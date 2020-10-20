@@ -1,0 +1,65 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.loginRegister__formSection {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 100%;
+	min-height: 100vh;
+	padding: 0 40%;
+}
+
+.loginRegister__logo {
+	width: 100%;
+	margin-bottom: 15%;
+}
+
+.loginRegister__title {
+	margin-bottom: 1em;
+	font-size: 2.5em;
+}
+
+.loginRegister__form {
+	display: flex;
+	flex-direction: column;
+}
+
+.loginRegister__input {
+	height: 3.125em;
+	box-shadow: 4px 10px 20px rgba(0, 0, 0, 0.1);
+	border-radius: 0.625em;
+	border: none;
+	outline: none;
+	padding: 0 1em;
+	margin: 1em 0;
+}
+
+.loginRegister__input:focus {
+	border: 1px solid #2968e2;
+}
+
+.loginRegister__button {
+	height: 3.125em;
+	background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+	font-weight: bold;
+	border: none;
+	border-radius: 1.5625em;
+	color: white;
+	margin: 1em 0;
+	box-shadow: 4px 10px 20px rgba(0, 0, 0, 0.1);
+	outline: none;
+	transition: 0.2s;
+}
+
+.loginRegister__button:hover {
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.center {
+	text-align: center;
+}

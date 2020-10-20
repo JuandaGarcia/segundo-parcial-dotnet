@@ -1,0 +1,64 @@
+﻿@page "/"
+@using System.Net.Http
+@using System.Net.Http.Json
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+<section class="loginRegister__formSection">
+	<form class="loginRegister__form" action="">
+		<h1 class="loginRegister__title">Iniciar Sesión</h1>
+    <p>@error</p>
+		<input
+			placeholder="Correo"
+      value="@email"
+      @oninput="OnEmailChanged"
+			class="loginRegister__input"
+			type="email"
+		/>
+		<input
+			placeholder="Contraseña"
+      value="@password"
+      @oninput="OnPasswordChanged"
+			class="loginRegister__input"
+			type="password"
+		/>
+		<button @onclick="@sendData" type="button" class="loginRegister__button">Iniciar Sesión</button>
+	</form>
+</section>
+
+@code {
+  private string email;
+  private string password;
+  private string error;
+
+  public class responseData
+    { 
+        public string token { get; set; }
+        public string error { get; set; }
+    }
+
+  private void OnPasswordChanged(ChangeEventArgs e)
+    {
+        password = e.Value.ToString();
+    }
+  private void OnEmailChanged(ChangeEventArgs e)
+    {
+        email = e.Value.ToString();
+    }
+
+  private async Task sendData()
+    {
+        var postBody = new { email = email, password = password };
+        var response = await Http.PostAsJsonAsync("http://localhost:8080/api/users", postBody);
+
+        var responseString = await response.Content.ReadFromJsonAsync<responseData>();
+        if (responseString.token != null)
+        {
+            NavigationManager.NavigateTo("/store");
+        }
+        if (responseString.error != null)
+        {
+            error = responseString.error;
+        }
+    }
+}
